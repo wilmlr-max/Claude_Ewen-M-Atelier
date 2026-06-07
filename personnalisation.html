@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sur-Mesure | Ewen-M-Atelier</title>
+    
+    <!-- Typographies -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- PALETTE DE COULEURS & VARIABLES --- */
+        :root {
+            --noir-profond: #0a0a0a;
+            --blanc-pur: #ffffff;
+            --acier-brosse: #b0b5b9;
+            --bronze: #a37c54;
+            --bois-fonce: #2c1a10;
+            --titre-font: 'Playfair Display', serif;
+            --texte-font: 'Lato', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--texte-font);
+            color: var(--noir-profond);
+            background-color: var(--blanc-pur);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background-color 0.4s ease, padding 0.4s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 15px 50px;
+            border-bottom: 1px solid var(--bronze);
+        }
+
+        .logo {
+            font-family: var(--titre-font);
+            font-size: 1.8rem;
+            color: var(--blanc-pur);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links a {
+            color: var(--blanc-pur);
+            text-decoration: none;
+            margin-left: 40px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--bronze); }
+
+        /* --- HERO BANNER (Page Interne) --- */
+        .hero-interne {
+            height: 60vh;
+            background-color: var(--noir-profond);
+            /* Photo sombre de détails métalliques ou de l'atelier */
+            background-image: linear-gradient(rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.9)), url('https://images.unsplash.com/photo-1517420879524-86d64ac2f339?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--blanc-pur);
+            padding-top: 80px;
+        }
+
+        .hero-interne h1 {
+            font-family: var(--titre-font);
+            font-size: 4rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .hero-interne p {
+            font-size: 1.1rem;
+            color: var(--acier-brosse);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- CONTENU DE LA PERSONNALISATION --- */
+        .configurateur {
+            padding: 100px 10%;
+            background-color: var(--blanc-pur);
+        }
+
+        .intro-texte {
+            max-width: 800px;
+            margin: 0 auto 100px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .categorie-section {
+            margin-bottom: 120px;
+            border-top: 1px solid #eaeaea;
+            padding-top: 80px;
+            display: flex;
+            gap: 60px;
+        }
+
+        .categorie-titre {
+            flex: 1;
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .categorie-titre h2 {
+            font-family: var(--titre-font);
+            font-size: 3rem;
+            color: var(--noir-profond);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .categorie-titre p {
+            color: var(--acier-brosse);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .categorie-options {
+            flex: 2;
+            display: grid;
+            /* Diminution de la taille des images : elles sont plafonnées à 380px de large */
+            grid-template-columns: repeat(2, minmax(200px, 380px));
+            gap: 50px;
+            justify-content: start;
+        }
+
+        /* Cartes de Matières/Options */
+        .option-card {
+            cursor: pointer;
+        }
+
+        .option-img-wrapper {
+            width: 100%;
+            /* Un format 16/10 diminue la hauteur de l'image à l'écran par rapport au 4/3 */
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            background-color: var(--noir-profond);
+            margin-bottom: 20px;
+        }
+
+        .option-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            filter: grayscale(40%);
+            transition: transform 0.8s ease, filter 0.5s ease, opacity 0.5s ease;
+        }
+
+        .option-card:hover .option-img-wrapper img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .option-card h3 {
+            font-family: var(--titre-font);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: var(--noir-profond);
+            transition: color 0.3s ease;
+        }
+
+        .option-card:hover h3 {
+            color: var(--bronze);
+        }
+
+        .option-card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* --- CONTACT / COMMANDE --- */
+        .cta-commande {
+            background-color: var(--noir-profond);
+            color: var(--blanc-pur);
+            text-align: center;
+            padding: 100px 5%;
+        }
+
+        .cta-commande h2 {
+            font-family: var(--titre-font);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--bronze);
+        }
+
+        .cta-commande p {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: var(--acier-brosse);
+        }
+
+        .btn-luxe {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--bronze);
+            color: var(--blanc-pur);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+        }
+
+        .btn-luxe:hover {
+            background-color: var(--bronze);
+            color: var(--noir-profond);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--noir-profond);
+            color: var(--acier-brosse);
+            padding: 80px 10% 40px;
+            text-align: center;
+            border-top: 1px solid var(--bois-fonce);
+        }
+
+        .footer-logo {
+            font-family: var(--titre-font);
+            font-size: 2rem;
+            color: var(--bronze);
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .footer-coordonnees p { margin-bottom: 10px; }
+
+        .social-icons { margin-top: 30px; }
+        .social-icons a {
+            color: var(--blanc-pur);
+            text-decoration: none;
+            margin: 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover { color: var(--bronze); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .categorie-section { flex-direction: column; gap: 40px; }
+            .categorie-titre { position: relative; top: 0; }
+            .categorie-options { grid-template-columns: 1fr; }
+            .hero-interne h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="navbar">
+        <a href="index.html" class="logo">Ewen-M-Atelier</a>
+        <nav class="nav-links">
+            <a href="index.html#collection">La Collection</a>
+            <a href="personnalisation.html">Personnalisation</a>
+            <a href="index.html#artisan">L'Atelier</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-interne">
+        <h1>L'Art du Sur-Mesure</h1>
+        <p>Forgez votre propre histoire</p>
+    </section>
+
+    <!-- CONFIGURATEUR / MATÉRIAUTHÈQUE -->
+    <section class="configurateur">
+        
+        <div class="intro-texte">
+            <p>Un couteau Ewen-M-Atelier n'est pas un simple objet, c'est une rencontre entre vos envies et mon savoir-faire. De l'alliage de la lame jusqu'aux reflets du manche, découvrez les matières et finitions qui rendront votre pièce absolument unique.</p>
+        </div>
+
+        <!-- CATEGORIE 1 : LA LAME -->
+        <div class="categorie-section">
+            <div class="categorie-titre">
+                <h2>La Lame</h2>
+                <p>Aciers & Finitions</p>
+            </div>
+            <div class="categorie-options">
+                <div class="option-card">
+                    <div class="option-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1518331539958-3013d7072a44?q=80&w=600&auto=format&fit=crop" alt="Acier Brossé">
+                    </div>
+                    <h3>Acier Brossé</h3>
+                    <p>Un rendu mat, pur et résolument contemporain. Résistant aux rayures du quotidien.</p>
+                </div>
+                <div class="option-card">
+                    <div class="option-img-wrapper">
+                        <!-- Image évoquant des projections d'art abstrait / métal texturé -->
+                        <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=600&auto=format&fit=crop" alt="Finition Jackson Pollock">
+                    </div>
+                    <h3>Jackson Pollock</h3>
+                    <p>Une finition artistique et chaotique, créant des motifs aléatoires pour une lame au caractère trempé.</p>
+                </div>
+                <div class="option-card">
+                    <div class="option-img-wrapper">
+                        <!-- Image évoquant les vagues du Damas -->
+                        <img src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=600&auto=format&fit=crop" alt="Acier Damas">
+                    </div>
+                    <h3>Acier Damas</h3>
+                    <p>L'héritage mythique. Un feuilletage d'aciers révélant des ondes hypnotiques uniques à chaque frappe.</p>
+                </div>
+                <div class="option-card">
+                    <div class="option-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=600&auto=format&fit=crop" alt="Lame Guillochée">
+                    </div>
+                    <h3>Simple ou Guillochée</h3>
+                    <p>Optez pour une ligne de dos épurée, ou ajoutez un guillochage sculpté à la lime pour un raffinement ultime.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORIE 2 : LE MANCHE -->
+        <div class="categorie-section">
+            <div class="categorie-titre">
+                <h2>Le Manche</h2>
+                <p>Matières & Textures</p>
+            </div>
+            <div class="categorie-options">
+                <div class="option-card">
+                    <div class="option-img-wrapper">
+                        <!-- Texture Bois Précieux -->
+                        <img src="https://images.unsplash.com/photo-1550684376-efcbd6e3f031?q=80&w=600&auto=format&fit=crop" alt="Essences de Bois">
+                    </div>
+                    <h3>Essences de Bois</h3>
+                    <p>Ébène, loupe de noyer ou bois de fer. Une sélection de bois précieux aux veinages profonds et chaleureux.</p>
+                </div>
+                <div class="option-card">
+                    <div class="option-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=600&auto=format&fit=crop" alt="Bronze Patiné">
+                    </div>
+                    <h3>Bronze & Bronze Patiné</h3>
+                    <p>Lourd et majestueux. Laissez-le brut pour qu'il vive avec vous, ou optez pour une patine vieillie à l'atelier.</p>
+                </div>
+                <div class="option-card">
+                    <div class="option-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1578301978693-85fa9c026109?q=80&w=600&auto=format&fit=crop" alt="Manche Jackson Pollock">
+                    </div>
+                    <h3>Jackson Pollock</h3>
+                    <p>Appliquée au manche, cette technique offre une prise en main texturée et une esthétique audacieuse.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORIE 3 : LES MITRES -->
+        <div class="categorie-section">
+            <div class="categorie-titre">
+                <h2>Les Mitres</h2>
+                <p>Avant & Arrière</p>
+            </div>
+            <div class="categorie-options">
+                <div class="option-card">
+                    <div class="option-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=600&auto=format&fit=crop" alt="Mitres Classiques">
+                    </div>
+                    <h3>Acier Classique</h3>
+                    <p>L'élégance intemporelle de l'acier poli ou brossé, venant souligner harmonieusement la jonction avec la lame.</p>
+                </div>
+                <div class="option-card">
+                    <div class="option-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=600&auto=format&fit=crop" alt="Mitres Bronze et Damas">
+                    </div>
+                    <h3>Bronze ou Damas</h3>
+                    <p>Osez le contraste en parant les extrémités de votre couteau d'un bronze chaleureux ou des volutes de l'acier Damas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORIE 4 : LES DÉTAILS -->
+        <div class="categorie-section">
+            <div class="categorie-titre">
+                <h2>Les Détails</h2>
+                <p>L'Art de la Ligne</p>
+            </div>
+            <div class="categorie-options">
+                <div class="option-card">
+                    <div class="option-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1612445108003-88339ab3c0ee?q=80&w=600&auto=format&fit=crop" alt="Ressort Guilloché">
+                    </div>
+                    <h3>Ressort Guilloché</h3>
+                    <p>Une signature d'artisan. Le dos du couteau (le ressort) est sculpté à la main, offrant un motif unique (lisse ou guilloché).</p>
+                </div>
+                <div class="option-card">
+                    <div class="option-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1580136611414-9b16bc7569b9?q=80&w=600&auto=format&fit=crop" alt="Faux Tranchant">
+                    </div>
+                    <h3>Faux Tranchant</h3>
+                    <p>Ajoutez un biseau sur le dos de la lame. Unilatéral pour l'asymétrie, ou bilatéral pour une ligne fuyante agressive et racée.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- SECTION COMMANDE -->
+    <section class="cta-commande">
+        <h2>Donnez vie à votre projet</h2>
+        <p>L'atelier Ewen-M ne propose pas de vente directe en ligne afin de privilégier l'échange. Contactez-moi pour discuter de vos choix de matières et concevoir ensemble la pièce qui vous accompagnera toute votre vie.</p>
+        <a href="mailto:contact@ewen-m-atelier.fr" class="btn-luxe">Initier une commande</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="footer-logo">Ewen-M-Atelier</span>
+        <div class="footer-coordonnees">
+            <p>Thiers, Capitale de la Coutellerie, France</p>
+            <p>Visite de l'atelier sur rendez-vous uniquement.</p>
+        </div>
+        <div class="social-icons">
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Facebook</a>
+        </div>
+    </footer>
+
+    <script>
+        // Effet Header au défilement
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+</body>
+</html>
