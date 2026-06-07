@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <!-- HERO DU MODÈLE -->
+<style>
+    /* --- PAGE MODÈLE --- */
+.hero-modele {
+    height: 85vh;
+    /* Remplacer par une grande photo de profil du couteau dans la pénombre */
+    background-image: linear-gradient(rgba(10, 10, 10, 0.2), rgba(10, 10, 10, 0.8)), url('https://images.unsplash.com/photo-1593632715014-9988295eb994?q=80&w=2000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 80px;
+    color: var(--blanc-pur);
+}
+
+.hero-modele h1 {
+    font-family: var(--titre-font);
+    font-size: 5rem;
+    font-style: italic;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.presentation-modele {
+    display: flex;
+    padding: 100px 10%;
+    background-color: var(--blanc-pur);
+    gap: 80px;
+    align-items: center;
+}
+
+.texte-modele {
+    flex: 1;
+}
+
+.texte-modele h2 {
+    font-family: var(--titre-font);
+    font-size: 2.5rem;
+    color: var(--noir-profond);
+    margin-bottom: 30px;
+}
+
+.texte-modele p {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.image-details-modele {
+    flex: 1;
+    height: 600px;
+    background-color: #f9f9f9;
+    /* Remplacer par un plan macro sur un détail (mitre ou guillochage) */
+    background-image: url('https://images.unsplash.com/photo-1620055106571-08144b20de84?q=80&w=1000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+.caracteristiques {
+    background-color: var(--noir-profond);
+    color: var(--blanc-pur);
+    padding: 100px 10%;
+    text-align: center;
+}
+
+.caracteristiques h3 {
+    font-family: var(--titre-font);
+    font-size: 2rem;
+    color: var(--bronze);
+    margin-bottom: 60px;
+}
+
+.grid-caracteristiques {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    border-top: 1px solid var(--bois-fonce);
+    border-bottom: 1px solid var(--bois-fonce);
+    padding: 50px 0;
+}
+
+.carac-item h4 {
+    font-family: var(--titre-font);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.carac-item p {
+    color: var(--acier-brosse);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-personnaliser {
+    display: inline-block;
+    margin-top: 80px;
+    padding: 15px 40px;
+    border: 1px solid var(--bronze);
+    color: var(--bronze);
+    text-decoration: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
+}
+
+.cta-personnaliser:hover {
+    background-color: var(--bronze);
+    color: var(--noir-profond);
+}
+</style>
+</head>
+<body>   
+<section class="hero-modele">
+        <h1>Le Sabal</h1>
+        <p style="color: var(--acier-brosse); text-transform: uppercase; letter-spacing: 2px;">L'élégance à l'état brut</p>
+    </section>
+
+    <!-- INSPIRATION ET LIGNES -->
+    <section class="presentation-modele">
+        <div class="texte-modele">
+            <h2>Une silhouette intemporelle</h2>
+            <p>Le Sabal puise son inspiration dans les lignes pures et franches. Conçu pour épouser parfaitement la paume de la main, son équilibre est pensé pour offrir une maniabilité absolue sans jamais sacrifier son esthétique racée.</p>
+            <p>Chaque courbe a été redessinée, affinée, jusqu'à obtenir cette tension parfaite entre le manche et la lame, signature de l'atelier Ewen-M.</p>
+        </div>
+        <div class="image-details-modele"></div>
+    </section>
+
+    <!-- CARACTÉRISTIQUES TECHNIQUES -->
+    <section class="caracteristiques">
+        <h3>Caractéristiques d'origine</h3>
+        <div class="grid-caracteristiques">
+            <div class="carac-item">
+                <h4>Mécanisme</h4>
+                <p>Ressort à cran forcé</p>
+            </div>
+            <div class="carac-item">
+                <h4>Dimensions</h4>
+                <p>Lame 9cm / Ouvert 20cm</p>
+            </div>
+            <div class="carac-item">
+                <h4>Poids</h4>
+                <p>Environ 110g selon matériaux</p>
+            </div>
+        </div>
+        
+        <a href="personnalisation.html" class="cta-personnaliser">Configurer ce modèle</a>
+    </section>
+    </body>
